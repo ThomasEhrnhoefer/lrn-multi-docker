@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t dockerhubdxtat/lrn-react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true dockerhubdxtat/lrn-react-test npm test
+
+after_success:
+  - docker build -t dockerhubdxtat/lrn-multi-client ./client
+  - docker build -t dockerhubdxtat/lrn-multi-nginx ./nginx
+  - docker build -t dockerhubdxtat/lrn-multi-server ./server
+  - docker build -t dockerhubdxtat/lrn-multi-worker ./worker
