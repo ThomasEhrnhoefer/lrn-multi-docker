@@ -14,7 +14,7 @@ after_success:
   - docker build -t dockerhubdxtat/lrn-multi-nginx ./nginx
   - docker build -t dockerhubdxtat/lrn-multi-server ./server
   - docker build -t dockerhubdxtat/lrn-multi-worker ./worker
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password=stdin
+  - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password=stdin
   - docker push dockerhubdxtat/lrn-multi-client
   - docker push dockerhubdxtat/lrn-multi-nginx
   - docker push dockerhubdxtat/lrn-multi-server
