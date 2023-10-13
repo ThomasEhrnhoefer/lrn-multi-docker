@@ -2,9 +2,11 @@ version: "3"
 services:
   client:
     image: "dockerhubdxtat/lrn-multi-client-10-14"
+    mem_limit: 128m
     hostname: client
   server:
     image: "dockerhubdxtat/lrn-multi-server-10-14"
+    mem_limit: 128m
     hostname: api
     environment:
       - REDIS_HOST=$REDIS_HOST
@@ -16,12 +18,14 @@ services:
       - PGPORT=$PGPORT
   worker:
     image: "dockerhubdxtat/lrn-multi-worker-10-14"
+    mem_limit: 128m
     hostname: worker
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
     image: "dockerhubdxtat/lrn-multi-nginx-10-14"
+    mem_limit: 128m
     hostname: nginx
     ports:
       - "80:80"
